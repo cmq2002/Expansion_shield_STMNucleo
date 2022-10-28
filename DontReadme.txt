@@ -3,29 +3,30 @@ chân LED: PB10 (D6)
 
 Chỉ sài hàng ray của adruino (Giống shield của thầy).
 
-chân SCL/SDA treo trên VCC (pull-up) (R = 1k-4.7k), cấu hình GPIO dạng Open-drain *(Không phải analog).
+chân SCL/SDA treo trên VCC (pull-up), cấu hình GPIO dạng (input/output)? Open-drain *(Không phải analog).
 First, MCU send data to DHT20(truy vấn cảm biến), Then it responds data to MCU
-
-Kết nối 1 master nhiều slave
 
 LCD I2C PCF8574
 
 STM32
+- looking for HAL_I2C_Master_Transmit()
 
 - Address 
 	DHT20	:	0x38
 	LCD	:	0x27 (A0,A1,A2 no res = 1) =>	Max 8 devices LCDs (0x20->0x27)
 - Clockspeed
-	CLK 	:	100000 (Standard mode : 100kb/s)	
+	CLK 	:	100000 (100kHz)	
 
-- Data Send: 
-	Looking for
-	1. HAL_I2C_Master_Transmit()
-
-	 
-
+- LCD
+	Implement function:
+		Ex:
+		LCD_Init(): bla bla, move cursor to home and set data address 0
+		LCD_Send_Data():include send the header. 4 parts in the data send x+y+z+t
+		LCD_Send_Cmd():	work same with send data()
+		LCD_Goto_XY (int row, int col): move the cursor to xy
+		
 reference:
-https://khuenguyencreator.com/giao-thuc-i2c-lap-trinh-stm32-voi-rtc-ds3231/
+https://tapit.vn/giao-tiep-stm32f103c8t6-voi-lcd-16x2-thong-qua-module-i2c/
 https://www.bluedot.space/tutorials/how-many-devices-can-you-connect-on-i2c-bus/
 https://drive.google.com/file/d/1EUze00NjyJdFRy9nF8QQxjB7dwrBWjGl/view
 https://khuenguyencreator.com/lap-trinh-stm32-voi-dht11-theo-chuan-1-wire/
