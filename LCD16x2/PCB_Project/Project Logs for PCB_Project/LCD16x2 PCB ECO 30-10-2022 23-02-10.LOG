@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=GND Pin=S1-1
+Removed Pin From Net: NetName=+5 Pin=S1-3
+Added Pin To Net: NetName=+5 Pin=S1-1
+Added Pin To Net: NetName=GND Pin=S1-3
+Added Room: Name=LCD16x2
