@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=LED Pin=U1-A9_7
+Added Pin To Net: NetName=LED Pin=U1-A8_2
+Added Member To Class: ClassName=LCD16x2 Member=Component C1 100nF
+Added Member To Class: ClassName=LCD16x2 Member=Component C2 100nF
+Added Room: Name=LCD16x2

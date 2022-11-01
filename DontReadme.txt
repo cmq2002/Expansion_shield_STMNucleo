@@ -1,5 +1,5 @@
 2 chân SCL(serial clock)/SDA (serial data) giao tiếp I2C dùng 2 pins PB8-PB9 (D14/D15)
-chân LED: PB10 (D6)
+chân LED: PA1 (A1)
 
 Chỉ sài hàng ray của adruino (Giống shield của thầy).
 
