@@ -25,18 +25,18 @@
   - looking for HAL_I2C_Master_Transmit()
 
   - Address 
-  	DHT20	:	0x38
-	  LCD	:	0x27 (A0,A1,A2 no res = 1) =>	Max 8 devices LCDs (0x20->0x27)
+  	- DHT20	:	0x38
+	-  LCD	:	0x27 (A0,A1,A2 no res = 1) =>	Max 8 devices LCDs (0x20->0x27)
   - Clockspeed
-	  CLK 	:	100000 (100kHz)	
+	-  CLK 	:	100000 (100kHz)	
 
   - LCD
-	  Implement function:
-		  Ex:
-		    LCD_Init(): bla bla, move cursor to home and set data address 0
-		    LCD_Send_Data():include send the header. 4 parts in the data send x+y+z+t
-		    LCD_Send_Cmd():	work same with send data()
-		    LCD_Goto_XY (int row, int col): move the cursor to xy
+	- Implement function:
+	- Ex:
+	- LCD_Init(): bla bla, move cursor to home and set data address 0
+	- LCD_Send_Data():include send the header. 4 parts in the data send x+y+z+t
+	- LCD_Send_Cmd():	work same with send data()
+	- LCD_Goto_XY (int row, int col): move the cursor to xy
 		    
 ### About the STM32 Project:
 - Configuring the .ioc:
