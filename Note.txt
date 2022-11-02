@@ -33,4 +33,3 @@ STM32
 - https://drive.google.com/file/d/1EUze00NjyJdFRy9nF8QQxjB7dwrBWjGl/view (For microbit IoTs)
 - https://khuenguyencreator.com/lap-trinh-stm32-voi-dht11-theo-chuan-1-wire/
 - https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf
-- https://tapit.vn/giao-tiep-stm32f103c8t6-voi-lcd-16x2-thong-qua-module-i2c/
