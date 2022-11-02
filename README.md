@@ -1,4 +1,4 @@
-### Expansion shield for STM Nucleo
+# Expansion shield for STM Nucleo
 
 ## General Information:
 - Major components: DHT-20 sensor and LCD 16x2
@@ -41,7 +41,7 @@
 ### About the STM32 Project:
 - Configuring the .ioc:
   - GPIO: For the Led 
-  - I2C1: For communication with the PCF8574 extension
+  - I2C1: For communication with the PCF8574 extension || By default: SCL -> PB8, SDA -> PB9
   - RCC: Generate external crystal clock
   - SYS: For STLink V2 Debuger
   - TIM2 - NVIC: Invoke timer interrupt
