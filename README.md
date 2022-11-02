@@ -45,8 +45,9 @@
   - Counter = 99
   
 ## About the Proteus Simulation:
-- Since the process of making custom board takes a long time, at the beginning of the project we will use Proteus for simulation instead.
+- Since the process of making custom board takes a long time, at the beginning of the project we will use Proteus for simulation.
 - The aim is to test the correctness of the program and also optimizing it.
+- Unfortunately, Proteus does not support the DHT-20 sensor, we will use the DHT-22 instead.
 - Later on, when the board is available we will run on real hardwares.
 		
 ## Reference:
