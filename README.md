@@ -58,3 +58,4 @@
 - https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf
 - https://controllerstech.com/i2c-lcd-in-stm32/
 - https://controllerstech.blogspot.com/2017/07/i2c-in-stm32.html
+- http://www.firmcodes.com/microcontrollers/8051-3/interfacing-lcd-with-8051/lcd-commands-and-understanding-of-lcd/ (Meaning of LCD commands)
