@@ -1,0 +1,18 @@
+!SESSION 2022-11-01 23:38:55.434 -----------------------------------------------
+eclipse.buildId=Version 1.7.0
+java.version=11.0.10
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2022-11-01 23:39:30.617
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2022-11-01 23:39:30.809
+!MESSAGE Log4j initialized with config file E:\OneDrive\FileBK_next\DoAn\Expansion_shield_STMNucleo\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-11-01 23:39:38.155
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-11-01 23:40:30.359
+!MESSAGE Indexed 'lcd16x2' (22 sources, 100 headers) in 5.64 sec: 7,534 declarations; 31,369 references; 2 unresolved inclusions; 36 syntax errors; 188 unresolved names (0.48%)

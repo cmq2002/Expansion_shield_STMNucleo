@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=LED Pin=U1-A9_7
+Change Component Comment : Designator=R3 Old Comment=220 New Comment=100
+Added Pin To Net: NetName=LED Pin=U1-A8_2
+Added Room: Name=LCD16x2
