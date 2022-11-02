@@ -8,7 +8,7 @@
   - The STM32 folder consists of the program to control this shield.
   - The Proteus foler contains the simulation of the shield.
 
-## Note:
+## Geneal Idea:
 - 2 chân SCL(serial clock)/SDA (serial data) giao tiếp I2C dùng 2 pins PB8-PB9 (D14/D15)
 
 - chân LED: PA1 (A1)
@@ -56,3 +56,5 @@
 - https://drive.google.com/file/d/1EUze00NjyJdFRy9nF8QQxjB7dwrBWjGl/view (For microbit IoTs)
 - https://khuenguyencreator.com/lap-trinh-stm32-voi-dht11-theo-chuan-1-wire/
 - https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf
+- https://controllerstech.com/i2c-lcd-in-stm32/
+- https://controllerstech.blogspot.com/2017/07/i2c-in-stm32.html
