@@ -10,17 +10,11 @@
 
 ## Geneal Idea:
 - 2 chân SCL(serial clock)/SDA (serial data) giao tiếp I2C dùng 2 pins PB8-PB9 (D14/D15)
-
 - chân LED: PA1 (A1)
-
 - Chỉ sài hàng ray của adruino (Giống shield của thầy).
-
 - chân SCL/SDA treo trên VCC (pull-up), cấu hình GPIO dạng (input/output)? Open-drain *(Không phải analog).
-
 - First, MCU send data to DHT20(truy vấn cảm biến), Then it responds data to MCU
-
 - LCD I2C PCF8574
-
 - STM32
   - looking for HAL_I2C_Master_Transmit()
 
@@ -51,8 +45,8 @@
   - Counter = 99
   
 ## About the Proteus Simulation:
-- Since the process of making custom board takes a long time, at the beginning of the project we will use Proteus for simulation instead to test the correctness of the program and also optimizing it.
-
+- Since the process of making custom board takes a long time, at the beginning of the project we will use Proteus for simulation instead.
+- The aim is to test the correctness of the program and also optimizing it.
 - Later on, when the board is available we will run on real hardwares.
 		
 ## Reference:
