@@ -1,0 +1,11 @@
+### About the clock
+- Configuring the .ioc:
+  - GPIO: For the Led 
+  - I2C1: For communication with the PCF8574 extension
+  - RCC: Generate external crystal clock
+  - SYS: STLink V2 Debuger
+  - TIM2 - NVIC: Invoke timer interrupt
+- The project using external crystal to generate 72Mhz clock
+- To invoke the timer interrupt every 10ms, setting must be as follow:
+  - Prescaler = 7199
+  - Counter = 99
