@@ -22,6 +22,7 @@
 #include "i2c.h"
 #include "tim.h"
 #include "gpio.h"
+#include "i2c-lcd.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -94,11 +95,24 @@ int main(void)
   /* USER CODE END 2 */
 
   /* Infinite loop */
+  lcd_init();
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
 
+
+	  lcd_send_string ("HELLOW WORLD");
+
+	  HAL_Delay(1000);
+
+	  lcd_put_cur(1,0);
+
+	  lcd_send_string("FROM BK WITH LOVE");
+
+	  HAL_Delay(2000);
+
+	  lcd_clear();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
