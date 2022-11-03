@@ -2,7 +2,7 @@
 
 ## General Information:
 - Major components: DHT-20 sensor and LCD 16x2
-- Purpose: Measuring temperature and humidity then print out using the LCD.
+- Purpose: Measuring temperature and humidity then print out the information using the LCD.
 - Project layout:
   - The Altiutm Designer folder includes Schematic and PCB layout of the Expansion Shield for STM Nucleo.
   - The STM32 folder consists of the program to control this shield.
@@ -10,17 +10,11 @@
 
 ## Geneal Idea:
 - 2 chân SCL(serial clock)/SDA (serial data) giao tiếp I2C dùng 2 pins PB8-PB9 (D14/D15)
-
 - chân LED: PA1 (A1)
-
 - Chỉ sài hàng ray của adruino (Giống shield của thầy).
-
 - chân SCL/SDA treo trên VCC (pull-up), cấu hình GPIO dạng (input/output)? Open-drain *(Không phải analog).
-
 - First, MCU send data to DHT20(truy vấn cảm biến), Then it responds data to MCU
-
 - LCD I2C PCF8574
-
 - STM32
   - looking for HAL_I2C_Master_Transmit()
 
@@ -38,7 +32,7 @@
 	- LCD_Send_Cmd():	work same with send data()
 	- LCD_Goto_XY (int row, int col): move the cursor to xy
 		    
-### About the STM32 Project:
+## About the STM32 Project:
 - Configuring the .ioc:
   - GPIO: For the Led 
   - I2C1: For communication with the PCF8574 extension || By default: SCL -> PB8, SDA -> PB9
@@ -49,6 +43,12 @@
 - To invoke the timer interrupt every 10ms, setting must be as follow:
   - Prescaler = 7199
   - Counter = 99
+  
+## About the Proteus Simulation:
+- Since the process of making custom board takes a long time, at the beginning of the project we will use Proteus for simulation.
+- The aim is to test the correctness of the program and also optimizing it.
+- Unfortunately, Proteus does not support the DHT-20 sensor, we will use the DHT-22 instead.
+- Later on, when the board is available we will run on real hardwares.
 		
 ## Reference:
 - https://tapit.vn/giao-tiep-stm32f103c8t6-voi-lcd-16x2-thong-qua-module-i2c/
@@ -58,3 +58,5 @@
 - https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf
 - https://controllerstech.com/i2c-lcd-in-stm32/
 - https://controllerstech.blogspot.com/2017/07/i2c-in-stm32.html
+- http://www.firmcodes.com/microcontrollers/8051-3/interfacing-lcd-with-8051/lcd-commands-and-understanding-of-lcd/ (Meaning of LCD commands)
+- https://forum.digikey.com/t/using-the-stm32cube-hal-i2c-driver-in-master-mode/15122 (HAL I2C Driver)
