@@ -50,6 +50,9 @@ default.size.stdout \
 OBJDUMP_LIST += \
 lcd16x2.list \
 
+OBJCOPY_HEX += \
+lcd16x2.hex \
+
 OBJCOPY_BIN += \
 lcd16x2.bin \
 
@@ -61,8 +64,8 @@ all: main-build
 main-build: lcd16x2.elf secondary-outputs
 
 # Tool invocations
-lcd16x2.elf: $(OBJS) $(USER_OBJS) E:\OneDrive\FileBK_next\DoAn\Altium_Design\LCD16x2\lcd16x2\STM32F103C6UX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "lcd16x2.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"E:\OneDrive\FileBK_next\DoAn\Altium_Design\LCD16x2\lcd16x2\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lcd16x2.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+lcd16x2.elf: $(OBJS) $(USER_OBJS) F:\Logic_Design\Expansion_shield_STMNucleo\STM32\lcd16x2_STM32\STM32F103C6UX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "lcd16x2.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"F:\Logic_Design\Expansion_shield_STMNucleo\STM32\lcd16x2_STM32\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lcd16x2.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -76,6 +79,11 @@ lcd16x2.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
+lcd16x2.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O ihex $(EXECUTABLES) "lcd16x2.hex"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 lcd16x2.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "lcd16x2.bin"
 	@echo 'Finished building: $@'
@@ -83,10 +91,10 @@ lcd16x2.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 
 # Other Targets
 clean:
-	-$(RM) $(SIZE_OUTPUT)$(OBJDUMP_LIST)$(EXECUTABLES)$(OBJS)$(S_DEPS)$(S_UPPER_DEPS)$(C_DEPS)$(OBJCOPY_BIN) lcd16x2.elf
+	-$(RM) $(OBJCOPY_HEX)$(SIZE_OUTPUT)$(OBJDUMP_LIST)$(EXECUTABLES)$(OBJS)$(S_DEPS)$(S_UPPER_DEPS)$(C_DEPS)$(OBJCOPY_BIN) lcd16x2.elf
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX) $(OBJCOPY_BIN)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'
