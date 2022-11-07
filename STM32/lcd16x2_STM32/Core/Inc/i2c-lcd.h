@@ -1,4 +1,4 @@
-#include "i2c.h"
+#include "stm32f1xx_hal.h"
 
 void lcd_init (void);   // initialize lcd
 

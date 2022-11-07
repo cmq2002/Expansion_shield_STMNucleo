@@ -1,6 +1,7 @@
 #include "i2c-lcd.h"
+extern I2C_HandleTypeDef hi2c1;
 
-#define SLAVE_ADDRESS_LCD 0x7E
+#define SLAVE_ADDRESS_LCD 0x27
 
 void lcd_send_cmd (char cmd)
 {

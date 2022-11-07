@@ -22,11 +22,11 @@
 #include "i2c.h"
 #include "tim.h"
 #include "gpio.h"
-#include "i2c-lcd.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "i2c-lcd.h"
+#include "software_timer.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -91,28 +91,29 @@ int main(void)
   MX_I2C1_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
+  HAL_TIM_Base_Start_IT (&htim2);
 
+  lcd_init ();
+
+  lcd_send_string ("FROM BK");
+
+  HAL_Delay(1000);
+
+  lcd_put_cur(1, 0);
+
+  lcd_send_string("WITH LOVE");
+
+  HAL_Delay(2000);
+
+  lcd_clear ();
   /* USER CODE END 2 */
 
   /* Infinite loop */
-  lcd_init();
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
 
-
-	  lcd_send_string ("HELLOW WORLD");
-
-	  HAL_Delay(1000);
-
-	  lcd_put_cur(1,0);
-
-	  lcd_send_string("FROM BK WITH LOVE");
-
-	  HAL_Delay(2000);
-
-	  lcd_clear();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -154,7 +155,10 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim )
+{
+	timerRun();
+}
 /* USER CODE END 4 */
 
 /**
