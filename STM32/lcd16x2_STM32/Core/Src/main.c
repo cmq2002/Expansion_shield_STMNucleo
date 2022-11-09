@@ -93,25 +93,30 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT (&htim2);
 
-  lcd_init ();
-
-  lcd_send_string ("FROM BK");
-
-  HAL_Delay(1000);
-
-  lcd_put_cur(1, 0);
-
-  lcd_send_string("WITH LOVE");
-
-  HAL_Delay(2000);
-
-  lcd_clear ();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
+	  lcd_init();
+
+	  lcd_init();
+
+	  lcd_put_cur(0, 0);
+
+	  lcd_send_string ("FROM BK");
+
+	  HAL_Delay(1000);
+
+	  lcd_put_cur(1, 0);
+
+	  lcd_send_string("WITH LOVE");
+
+	  HAL_Delay(2000);
+
+	  lcd_clear();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

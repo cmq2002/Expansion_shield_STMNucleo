@@ -1,7 +1,5 @@
 #include "i2c-lcd.h"
-extern I2C_HandleTypeDef hi2c1;
-
-#define SLAVE_ADDRESS_LCD 0x27
+#define SLAVE_ADDRESS_LCD 0x27 // change this according to ur setup
 
 void lcd_send_cmd (char cmd)
 {
@@ -28,31 +26,6 @@ void lcd_send_data (char data)
 	data_t[3] = data_l|0x09;  //en=0, rs=0
 	HAL_I2C_Master_Transmit (&hi2c1, SLAVE_ADDRESS_LCD,(uint8_t *) data_t, 4, 100);
 }
-
-void lcd_clear (void)
-{
-	lcd_send_cmd (0x80);
-	for (int i=0; i<70; i++)
-	{
-		lcd_send_data (' ');
-	}
-}
-
-void lcd_put_cur(int row, int col)
-{
-    switch (row)
-    {
-        case 0:
-            col |= 0x80;
-            break;
-        case 1:
-            col |= 0xC0;
-            break;
-    }
-
-    lcd_send_cmd (col);
-}
-
 
 void lcd_init (void)
 {
@@ -84,3 +57,28 @@ void lcd_send_string (char *str)
 {
 	while (*str) lcd_send_data (*str++);
 }
+
+void lcd_clear (void)
+{
+	lcd_send_cmd (0x80);
+	for (int i=0; i<70; i++)
+	{
+		lcd_send_data (' ');
+	}
+}
+
+void lcd_put_cur(int row, int col)
+{
+    switch (row)
+    {
+        case 0:
+            col |= 0x80;
+            break;
+        case 1:
+            col |= 0xC0;
+            break;
+    }
+
+    lcd_send_cmd (col);
+}
+
