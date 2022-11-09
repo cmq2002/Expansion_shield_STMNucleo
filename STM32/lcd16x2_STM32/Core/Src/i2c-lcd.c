@@ -41,16 +41,17 @@ void lcd_init (void)
 	HAL_Delay(10);
 
   // dislay initialisation
-	lcd_send_cmd (0x28); // Function set --> DL=0 (4 bit mode), N = 1 (2 line display) F = 0 (5x8 characters)
+  // lcd cmd meaning: http://www.firmcodes.com/microcontrollers/8051-3/interfacing-lcd-with-8051/lcd-commands-and-understanding-of-lcd/
+	lcd_send_cmd (0x28); // init 2 lines and 5x7 matrix 4-bit mode
 	HAL_Delay(1);
-	lcd_send_cmd (0x08); //Display on/off control --> D=0,C=0, B=0  ---> display off
+	lcd_send_cmd (0x08); // display off Cursor off
 	HAL_Delay(1);
 	lcd_send_cmd (0x01);  // clear display
 	HAL_Delay(1);
 	HAL_Delay(1);
-	lcd_send_cmd (0x06); //Entry mode set --> I/D = 1 (increment cursor) & S = 0 (no shift)
+	lcd_send_cmd (0x06); // shift cursor to right
 	HAL_Delay(1);
-	lcd_send_cmd (0x0C); //Display on/off control --> D = 1, C and B = 0. (Cursor and blink, last two bits)
+	lcd_send_cmd (0x0C); // display on cursor off
 }
 
 void lcd_send_string (char *str)
