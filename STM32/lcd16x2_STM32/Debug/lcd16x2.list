@@ -168,7 +168,7 @@ void MX_GPIO_Init(void)
 080001e0 <lcd_send_cmd>:
 extern I2C_HandleTypeDef hi2c1;
 
-#define SLAVE_ADDRESS_LCD 0x4E // change this according to ur setup
+#define SLAVE_ADDRESS_LCD 0x3F // change this according to ur setup
 
 void lcd_send_cmd (char cmd)
 {
@@ -212,7 +212,7 @@ void lcd_send_cmd (char cmd)
  8000224:	2364      	movs	r3, #100	; 0x64
  8000226:	9300      	str	r3, [sp, #0]
  8000228:	2304      	movs	r3, #4
- 800022a:	214e      	movs	r1, #78	; 0x4e
+ 800022a:	213f      	movs	r1, #63	; 0x3f
  800022c:	4803      	ldr	r0, [pc, #12]	; (800023c <lcd_send_cmd+0x5c>)
  800022e:	f000 fff7 	bl	8001220 <HAL_I2C_Master_Transmit>
 }
@@ -267,7 +267,7 @@ void lcd_send_data (char data)
  8000284:	2364      	movs	r3, #100	; 0x64
  8000286:	9300      	str	r3, [sp, #0]
  8000288:	2304      	movs	r3, #4
- 800028a:	214e      	movs	r1, #78	; 0x4e
+ 800028a:	213f      	movs	r1, #63	; 0x3f
  800028c:	4803      	ldr	r0, [pc, #12]	; (800029c <lcd_send_data+0x5c>)
  800028e:	f000 ffc7 	bl	8001220 <HAL_I2C_Master_Transmit>
 }
