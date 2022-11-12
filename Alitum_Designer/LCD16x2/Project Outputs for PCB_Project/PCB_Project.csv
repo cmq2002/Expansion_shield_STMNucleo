@@ -1,0 +1,10 @@
+Description,Designator,Comment,Footprint,LibRef,Quantity
+
+"Capacitor non-pol","C1, C2, C3, C4, C5","100nF","C 0805","Capacitor NP","5"
+"Typical LED","D1","Led","LED 3MM - red","Led","1"
+"Character LCD 16x2","LCD1","LCD 16x2","LCD 1602A I2C","LCD 16x2","1"
+"Header, 4-Pin","P1, P2","Header 4","HDR/Header/4/BOX","Header 4","2"
+"Resistor","R1, R2","3.3k","R 0805","Resistor","2"
+"Resistor","R3","150","R 0805","Resistor","1"
+"DTH20 Temperature and humidity module","S1","DHT20","DTH20/H","DTH20","1"
+"STM32F103RB, mbed-Enabled Development Nucleo-64 STM32F1 ARM® Cortex®-M3 MCU 32-Bit Embedded Evaluation Board","U1","NUCLEO-F103RB","NUCLEO","NUCLEO-F103RB","1"

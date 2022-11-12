@@ -1,0 +1,5 @@
+Change Component Comment : Designator=R1 Old Comment=5k New Comment=3.3k
+Change Component Comment : Designator=R2 Old Comment=5k New Comment=3.3k
+Change Component Comment : Designator=R3 Old Comment=100 New Comment=150
+Change Component Description : Designator=U1 Old Description=STM32F103RB, mbed-Enabled Development Nucleo-64 STM32F1 ARMÂ® CortexÂ®-M3 MCU 32-Bit Embedded Evaluation Board New Description=STM32F103RB, mbed-Enabled Development Nucleo-64 STM32F1 ARM® Cortex®-M3 MCU 32-Bit Embedded Evaluation Board
+Added Room: Name=LCD16x2
