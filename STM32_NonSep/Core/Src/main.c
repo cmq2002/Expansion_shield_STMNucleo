@@ -23,6 +23,7 @@
 /* USER CODE BEGIN Includes */
 #include "software_timer.h"
 #include "i2c-lcd-v2.h"
+#include "liquidcrystal_i2c.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -94,13 +95,15 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
-  HAL_Delay(1000);
-  lcd_init();
-  lcd_goto_XY(1,4);
-  lcd_send_string("HELLO WORLD");
-  HAL_Delay(50);
-  lcd_goto_XY(2,0);
-  lcd_send_string("FROM BK");
+
+
+  HD44780_Init(2);
+  HD44780_Clear();
+  HD44780_SetCursor(0,0);
+  HD44780_PrintStr("HELLO WORLD");
+  HD44780_SetCursor(0,1);
+  HD44780_PrintStr("FROM BK");
+  HAL_Delay(2000);
   /* USER CODE END 2 */
 
   /* Infinite loop */
