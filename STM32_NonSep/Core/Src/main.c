@@ -22,7 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "software_timer.h"
-#include "i2c-lcd.h"
+#include "i2c-lcd-v2.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -59,8 +59,7 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-int row = 0;
-int col = 0;
+
 /* USER CODE END 0 */
 
 /**
@@ -95,20 +94,13 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
-
-//  lcd_init ();
-//
-//  lcd_send_string ("HELLO WORLD");
-//
-//  HAL_Delay(1000);
-//
-//  lcd_put_cur(1, 0);
-//
-//  lcd_send_string("from BK");
-//
-//  HAL_Delay(2000);
-//
-//  lcd_clear ();
+  HAL_Delay(1000);
+  lcd_init();
+  lcd_goto_XY(1,4);
+  lcd_send_string("HELLO WORLD");
+  HAL_Delay(50);
+  lcd_goto_XY(2,0);
+  lcd_send_string("FROM BK");
   /* USER CODE END 2 */
 
   /* Infinite loop */

@@ -1,4 +1,4 @@
-"./Core/Src/i2c-lcd.o"
+"./Core/Src/i2c-lcd-v2.o"
 "./Core/Src/main.o"
 "./Core/Src/software_timer.o"
 "./Core/Src/stm32f1xx_hal_msp.o"
