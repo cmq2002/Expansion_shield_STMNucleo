@@ -1,7 +1,8 @@
 #include "i2c-lcd-v2.h"
+#include "main.h"
 extern I2C_HandleTypeDef hi2c1;  // change your handler here accordingly
 
-#define SLAVE_ADDRESS_LCD 0x4c // change this according to ur setup
+#define SLAVE_ADDRESS_LCD 0x4E // change this according to ur setup
 
 void lcd_send_cmd (char cmd)
 {
@@ -40,7 +41,7 @@ void lcd_init (void)
 	HAL_Delay(50);
 	lcd_send_cmd (0x06); /* set entry mode */
 	HAL_Delay(50);
-	lcd_send_cmd (0x0c); /* set display to on */	
+	lcd_send_cmd (0x0c); /* set display to on */
 	HAL_Delay(50);
 	lcd_send_cmd (0x02); /* move cursor to home and set data address to 0 */
 	HAL_Delay(50);
@@ -60,7 +61,7 @@ void lcd_clear_display (void)
 void lcd_goto_XY (int row, int col)
 {
 	uint8_t pos_Addr;
-	if(row == 1) 
+	if(row == 1)
 	{
 		pos_Addr = 0x80 + row - 1 + col;
 	}

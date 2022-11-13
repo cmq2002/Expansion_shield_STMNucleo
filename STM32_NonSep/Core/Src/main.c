@@ -25,6 +25,7 @@
 #include "i2c-lcd-v2.h"
 #include "liquidcrystal_i2c.h"
 #include "CLCD_i2c.h"
+#include "app_i2c_lcd.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -97,12 +98,16 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
 
+
+  	  // CLCD_i2c
 //  CLCD_I2C_Init(&LCD1, &hi2c1, 0x4E, 16, 2);
 //  CLCD_I2C_SetCursor(&LCD1, 0, 0);
 //  CLCD_I2C_WriteString(&LCD1, "Hello World");
 //  CLCD_I2C_SetCursor(&LCD1, 0, 1);
 //  CLCD_I2C_WriteString(&LCD1, "From BK");
 
+
+  	  //i2c-lcd-v2
   HAL_Delay(1000);
   lcd_init();
   lcd_goto_XY(1,0);
@@ -110,6 +115,14 @@ int main(void)
   HAL_Delay(50);
   lcd_goto_XY(2,0);
   lcd_send_string("From BK");
+
+
+  	  // app_i2c_lcd
+//  	HAL_Delay(1000);
+//  	Lcd_Initialization();
+//  	Lcd_Goto_XY(0,0);
+//  	Lcd_Send_String("Hello World");
+//  	HAL_Delay(50);
   /* USER CODE END 2 */
 
   /* Infinite loop */

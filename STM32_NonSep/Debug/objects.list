@@ -1,4 +1,5 @@
 "./Core/Src/CLCD_i2c.o"
+"./Core/Src/app_i2c_lcd.o"
 "./Core/Src/i2c-lcd-v2.o"
 "./Core/Src/liquidcrystal_i2c.o"
 "./Core/Src/main.o"
