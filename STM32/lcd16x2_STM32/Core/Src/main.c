@@ -21,12 +21,14 @@
 #include "main.h"
 #include "i2c.h"
 #include "tim.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "i2c-lcd.h"
 #include "software_timer.h"
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -57,8 +59,10 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-int row = 0;
-int col = 0;
+uint8_t Buffer[25] = {0};
+uint8_t Space[] = " - ";
+uint8_t StartMSG[] = "Starting I2C Scanning: \r\n";
+uint8_t EndMSG[] = "Done! \r\n\r\n";
 /* USER CODE END 0 */
 
 /**
@@ -68,7 +72,7 @@ int col = 0;
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+	uint8_t i = 0, ret;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -91,27 +95,34 @@ int main(void)
   MX_GPIO_Init();
   MX_I2C1_Init();
   MX_TIM2_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT (&htim2);
 
-  lcd_init ();
-
-  lcd_send_string ("FROM BK");
-
   HAL_Delay(1000);
 
-  lcd_put_cur(1, 0);
-
-  lcd_send_string("WITH LOVE");
-
-  HAL_Delay(2000);
-
-  lcd_clear ();
-
+      /*-[ I2C Bus Scanning ]-*/
+  HAL_UART_Transmit(&huart2, StartMSG, sizeof(StartMSG), 10000);
+  for(i=1; i<128; i++)
+  {
+	  ret = HAL_I2C_IsDeviceReady(&hi2c1, (uint16_t)(i<<1), 3, 5);
+	  if (ret != HAL_OK) /* No ACK Received At That Address */
+	  {
+		  HAL_UART_Transmit(&huart2, Space, sizeof(Space), 10000);
+	  }
+	  else if(ret == HAL_OK)
+	  {
+		  sprintf(Buffer, "0x%X", i);
+		  HAL_UART_Transmit(&huart2, Buffer, sizeof(Buffer), 10000);
+	  }
+  }
+  HAL_UART_Transmit(&huart2, EndMSG, sizeof(EndMSG), 10000);
+  /*--[ Scanning Done ]--*/
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
   while (1)
   {
 
