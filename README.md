@@ -41,9 +41,12 @@
   - TIM2 - NVIC: Invoke timer interrupt
 - The project using external crystal to generate 72Mhz clock
 - To invoke the timer interrupt every 10ms, setting must be as follow:
-  - Prescaler = 7199
+  - Prescaler = 7999
   - Counter = 99
   
+## Difficult:
+- We have the problem with the address of LCD, so we try to use address scan
+
 ## About the Proteus Simulation:
 - Since the process of making custom board takes a long time, at the beginning of the project we will use Proteus for simulation.
 - The aim is to test the correctness of the program and also optimizing it.

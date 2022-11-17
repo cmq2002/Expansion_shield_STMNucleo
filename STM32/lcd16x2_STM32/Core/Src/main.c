@@ -26,8 +26,12 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "i2c-lcd.h"
+#include "button.h"
 #include "software_timer.h"
+#include "global.h"
+#include "fsm_automatic.h"
+#include "fsm_manual.h"
+#include "scheduler.h"
 #include <stdio.h>
 /* USER CODE END Includes */
 
@@ -59,10 +63,9 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint8_t Buffer[25] = {0};
-uint8_t Space[] = " - ";
-uint8_t StartMSG[] = "Starting I2C Scanning: \r\n";
-uint8_t EndMSG[] = "Done! \r\n\r\n";
+void led1test(){
+	HAL_GPIO_TogglePin(LED3_00_GPIO_Port, LED3_00_Pin);
+}
 /* USER CODE END 0 */
 
 /**
@@ -72,7 +75,10 @@ uint8_t EndMSG[] = "Done! \r\n\r\n";
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	uint8_t i = 0, ret;
+	uint8_t Buffer[25] = {0};
+	uint8_t Space[] = " - ";
+	uint8_t StartMSG[] = "Starting I2C Scanning: \r\n";
+	uint8_t EndMSG[] = "Done! \r\n\r\n";
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -93,44 +99,62 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_I2C1_Init();
   MX_TIM2_Init();
   MX_USART2_UART_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_Base_Start_IT (&htim2);
+  HAL_TIM_Base_Start_IT(&htim2);
+  uint8_t i = 0, ret;
+
+
 
   HAL_Delay(1000);
 
-      /*-[ I2C Bus Scanning ]-*/
-  HAL_UART_Transmit(&huart2, StartMSG, sizeof(StartMSG), 10000);
+  /*-[ I2C Bus Scanning ]-*/
+  HAL_UART_Transmit(&huart2, StartMSG, sizeof(StartMSG), 1000);
   for(i=1; i<128; i++)
   {
-	  ret = HAL_I2C_IsDeviceReady(&hi2c1, (uint16_t)(i<<1), 3, 5);
-	  if (ret != HAL_OK) /* No ACK Received At That Address */
-	  {
-		  HAL_UART_Transmit(&huart2, Space, sizeof(Space), 10000);
-	  }
-	  else if(ret == HAL_OK)
-	  {
-		  sprintf(Buffer, "0x%X", i);
-		  HAL_UART_Transmit(&huart2, Buffer, sizeof(Buffer), 10000);
-	  }
+      //ret = HAL_I2C_IsDeviceReady(&hi2c1, (uint16_t)(i<<1), 3, 0xFF);
+	  ret = HAL_I2C_Master_Transmit(&hi2c1, 0x27 << 1 + 1, 0x00, 4, HAL_MAX_DELAY);
+      if (ret != HAL_OK) /* No ACK Received At That Address */
+      {
+          HAL_UART_Transmit(&huart2, Space, sizeof(Space), 1000);
+      }
+      else if(ret == HAL_OK)
+      {
+          sprintf(Buffer, "0x%X", i);
+          HAL_UART_Transmit(&huart2, Buffer, sizeof(Buffer), 1000);
+      }
+      HAL_Delay(1000);
   }
-  HAL_UART_Transmit(&huart2, EndMSG, sizeof(EndMSG), 10000);
-  /*--[ Scanning Done ]--*/
+  HAL_UART_Transmit(&huart2, EndMSG, sizeof(EndMSG), 1000);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-
-  while (1)
-  {
-
-
+//  while (i<128)
+//  {
+//	 // if (timer0_flag == 1){
+//		  if (HAL_I2C_IsDeviceReady(&hi2c1, (uint16_t)(i<<1), 1, 0xFFFF) == HAL_OK){
+//			  sprintf(str, "%d",i);
+//			  HAL_UART_Transmit(&huart2, str, sizeof(str) , 1000);}
+//		  else{
+//			  HAL_UART_Transmit(&huart2, Space, sizeof(Space), 1000);}
+//		  if (i > 0 && (i + 1) % 16 == 0)
+//			  HAL_UART_Transmit(&huart2, "\n", sizeof("\n"), 1000);
+//
+//		  //HAL_UART_Transmit(&huart2, str, sprintf(str, "%s","Hello\r\n"), 1000);
+//		  HAL_GPIO_TogglePin ( LED_RED_GPIO_Port , LED_RED_Pin) ;
+//		  i++;
+//		  //setTimer0(500);
+//	  //}
+//  	  SCH_Dispatch_Tasks();
+//		}
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-  }
+
+
   /* USER CODE END 3 */
 }
 
@@ -152,7 +176,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL2;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -163,20 +187,22 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV2;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
   {
     Error_Handler();
   }
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim )
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	timerRun();
+	SCH_Update();
 }
 /* USER CODE END 4 */
 
