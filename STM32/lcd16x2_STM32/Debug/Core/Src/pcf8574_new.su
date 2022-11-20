@@ -1,0 +1,4 @@
+../Core/Src/pcf8574_new.c:23:7:int_pow	24	static
+../Core/Src/pcf8574_new.c:36:6:pcf8574_init	16	static
+../Core/Src/pcf8574_new.c:44:6:pcf8574_setaddr	16	static
+../Core/Src/pcf8574_new.c:48:6:pcf8574_write	48	static

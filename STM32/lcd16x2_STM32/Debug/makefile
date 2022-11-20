@@ -63,8 +63,8 @@ all: main-build
 main-build: lcd16x2_stm32.elf secondary-outputs
 
 # Tool invocations
-lcd16x2_stm32.elf lcd16x2_stm32.map: $(OBJS) $(USER_OBJS) D:\OneDrive\FileBK_next\DoAn\Expansion_shield_STMNucleo\STM32\lcd16x2_stm32\STM32F103C6UX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "lcd16x2_stm32.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\OneDrive\FileBK_next\DoAn\Expansion_shield_STMNucleo\STM32\lcd16x2_stm32\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lcd16x2_stm32.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+lcd16x2_stm32.elf lcd16x2_stm32.map: $(OBJS) $(USER_OBJS) D:\OneDrive\FileBK_next\DoAn\Expansion_shield_STMNucleo\STM32\lcd16x2_STM32\STM32F103C6UX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "lcd16x2_stm32.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\OneDrive\FileBK_next\DoAn\Expansion_shield_STMNucleo\STM32\lcd16x2_STM32\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lcd16x2_stm32.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
