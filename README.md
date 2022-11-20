@@ -44,7 +44,7 @@
   - Prescaler = 7999
   - Counter = 99
   
-## Difficult:
+## Difficulties:
 - We have the problem with the address of LCD, so we try to use address scan
 
 ## About the Proteus Simulation:
