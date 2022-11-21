@@ -17,6 +17,9 @@ uint8_t buffer[MAX_BUFFER_SIZE];
 uint8_t index_buffer = 0;
 int dht20_flag = 0;
 
+int temperature = 0;
+int humidity = 0;
+
 void DHT20_READING_CALLBACK(){
 	HAL_I2C_Master_Receive(&hi2c1, SLAVE_ADDRESS_DHT20, *buffer_byte, 1, 100);
 	buffer[index_buffer++] = buffer_byte;
