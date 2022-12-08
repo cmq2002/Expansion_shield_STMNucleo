@@ -119,26 +119,24 @@ int main(void)
 		  setTimer1(100);
 	  }
 
-//	  temperature = rand();
-//  	  humidity = rand();
-//
-//	  sprintf(str1, "%d", temperature);
-//	  sprintf(str2, "%d", humidity);
-//
-//
-//	  if (timer2_flag == 1){
-//		  lcd_goto_XY(1, 0);
-//		  lcd_send_string("TEMP: ");
-//		  lcd_goto_XY(2, 0);
-//		  lcd_send_string("HUMID: ");
-//
-//		  lcd_goto_XY(1, 7);
-//		  lcd_send_string(str1);
-//		  lcd_goto_XY(2, 7);
-//		  lcd_send_string(str2);
-//
-//		  setTimer2(300);
-//	  }
+	  if (timer2_flag == 1){  
+	  	temperature = rand();
+ 	  	humidity = rand();
+		setTimer2(300);
+	  }
+			  
+	  sprintf(str1, "%d", temperature);
+	  sprintf(str2, "%d", humidity);
+
+	  lcd_goto_XY(1, 0);
+	  lcd_send_string("TEMP: ");
+	  lcd_goto_XY(2, 0);
+	  lcd_send_string("HUMID: ");
+
+	  lcd_goto_XY(1, 7);
+	  lcd_send_string(str1);
+	  lcd_goto_XY(2, 7);
+	  lcd_send_string(str2);
 
 
     /* USER CODE BEGIN 3 */
