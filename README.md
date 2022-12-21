@@ -43,16 +43,7 @@
 - To invoke the timer interrupt every 10ms, setting must be as follow:
   - Prescaler = 7999
   - Counter = 99
-  
-## Difficulties:
-- We have the problem with the address of LCD, so we try to use address scan
 
-## About the Proteus Simulation:
-- Since the process of making custom board takes a long time, at the beginning of the project we will use Proteus for simulation.
-- The aim is to test the correctness of the program and also optimizing it.
-- Unfortunately, Proteus does not support the DHT-20 sensor, we will use the DHT-22 instead.
-- Later on, when the board is available we will run on real hardwares.
-		
 ## Reference:
 - https://tapit.vn/giao-tiep-stm32f103c8t6-voi-lcd-16x2-thong-qua-module-i2c/
 - https://www.bluedot.space/tutorials/how-many-devices-can-you-connect-on-i2c-bus/
@@ -63,3 +54,5 @@
 - https://controllerstech.blogspot.com/2017/07/i2c-in-stm32.html
 - http://www.firmcodes.com/microcontrollers/8051-3/interfacing-lcd-with-8051/lcd-commands-and-understanding-of-lcd/ (Meaning of LCD commands)
 - https://forum.digikey.com/t/using-the-stm32cube-hal-i2c-driver-in-master-mode/15122 (HAL I2C Driver)
+- https://www.circuitbasics.com/basics-of-the-i2c-communication-protocol/
+- https://www.watelectronics.com/i2c-protocol/
