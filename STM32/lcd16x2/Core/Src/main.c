@@ -22,9 +22,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "i2c-lcd.h"
 #include <stdio.h>
 #include <string.h>
+#include "i2c-lcd.h"
+#include "dht20.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -62,7 +63,7 @@ static void MX_USART2_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 void I2C_Scan() {
-    char info[] = "Scanning I2C bus...\r\n";
+    char info[] = "\r\n\r\nScanning I2C bus...\r\n";
     HAL_UART_Transmit(&huart2, (uint8_t*)info, strlen(info), HAL_MAX_DELAY);
 
     HAL_StatusTypeDef res;
@@ -117,12 +118,32 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   I2C_Scan();
   lcd_init();
-  lcd_send_string("dm world");
+  lcd_send_string("Temp:");
+  lcd_goto_XY(2, 0);
+  lcd_send_string("Humid:");
+  uint32_t value[2];
+  char temp[10],humid[10];
+  dht20_init();
+
+  dht20_start();
+
+
   while (1)
   {
+	  dht20_start();
+	  dht20_read(value);
+	  sprintf(temp," %ld*C",value[1]);
+	  sprintf(humid," %ld%%",value[0]);
+	  lcd_goto_XY(1, 6);
+	  lcd_send_string(temp);
+	  lcd_goto_XY(2, 6);
+	  lcd_send_string(humid);
+//	  HAL_Delay(50);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	    HAL_Delay(1000);
   }
   /* USER CODE END 3 */
 }
@@ -240,11 +261,22 @@ static void MX_USART2_UART_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : PA1 */
+  GPIO_InitStruct.Pin = GPIO_PIN_1;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 }
 

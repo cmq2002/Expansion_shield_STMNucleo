@@ -1,5 +1,5 @@
 /** 
-Edit by modify: Ngoc Hang 
+
 **/
 
 #include "i2c-lcd.h"

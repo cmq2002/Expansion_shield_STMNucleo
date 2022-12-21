@@ -1,6 +1,8 @@
 /** 
 Edit by modify: Ngoc Hang 
 **/
+#ifndef INC_LCD_H_
+#define INC_LCD_H_
 
 #include "stm32f1xx_hal.h"
 
@@ -15,3 +17,5 @@ void lcd_send_string (char *str);  // send string to the lcd
 void lcd_clear_display (void);	//clear display lcd
 
 void lcd_goto_XY (int row, int col); //set proper location on screen
+
+#endif /* INC_DHT20_H_ */
