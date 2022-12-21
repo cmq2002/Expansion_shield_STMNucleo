@@ -117,7 +117,9 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   I2C_Scan();
+  lcd_clear_display();
   lcd_init();
+
   lcd_send_string("Temp:");
   lcd_goto_XY(2, 0);
   lcd_send_string("Humid:");
@@ -125,20 +127,16 @@ int main(void)
   char temp[10],humid[10];
   dht20_init();
 
-  dht20_start();
-
-
   while (1)
   {
-	  dht20_start();
 	  dht20_read(value);
-	  sprintf(temp," %ld*C",value[1]);
+	  //11011111 is degree character (manual)
+	  sprintf(temp," %ld%cC",value[1],0b11011111);
 	  sprintf(humid," %ld%%",value[0]);
 	  lcd_goto_XY(1, 6);
 	  lcd_send_string(temp);
 	  lcd_goto_XY(2, 6);
 	  lcd_send_string(humid);
-//	  HAL_Delay(50);
 
     /* USER CODE END WHILE */
 
