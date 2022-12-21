@@ -1,4 +1,0 @@
-../Core/Src/dht20.c:15:6:dht20_init	24	static
-../Core/Src/dht20.c:32:6:dht20_reset	32	static
-../Core/Src/dht20.c:50:6:dht20_start	32	static
-../Core/Src/dht20.c:74:6:dht20_read	40	static
