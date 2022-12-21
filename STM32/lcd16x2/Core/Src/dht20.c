@@ -72,7 +72,7 @@ void dht20_start(void){
 	HAL_I2C_Master_Transmit(&hi2c1, SLAVE_ADDRESS_DHT20, (uint8_t*) data, 2, 0xFF);
 }
 
-void dht20_read(uint32_t* value){
+void dht20_read(uint8_t* value){
 	dht20_start();
 	uint8_t data[7];
 	uint32_t Temper = 0, Humid = 0;

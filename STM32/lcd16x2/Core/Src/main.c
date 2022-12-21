@@ -123,21 +123,20 @@ int main(void)
   lcd_send_string("Temp:");
   lcd_goto_XY(2, 0);
   lcd_send_string("Humid:");
-  uint32_t value[2];
+  uint8_t value[2] = {0,0};
   char temp[10],humid[10];
   dht20_init();
-
+  dht20_read(value);
   while (1)
   {
 	  dht20_read(value);
 	  //11011111 is degree character (manual)
-	  sprintf(temp," %ld%cC",value[1],0b11011111);
-	  sprintf(humid," %ld%%",value[0]);
+	  sprintf(temp," %d%cC",value[1],0b11011111);
+	  sprintf(humid," %d%%",value[0]);
 	  lcd_goto_XY(1, 6);
 	  lcd_send_string(temp);
 	  lcd_goto_XY(2, 6);
 	  lcd_send_string(humid);
-
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
