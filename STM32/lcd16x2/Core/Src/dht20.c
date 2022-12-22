@@ -20,13 +20,13 @@ void dht20_init(void){
 	init[1] = 0x00;
 	init[2] = 0x00;
 	HAL_I2C_Master_Transmit(&hi2c1, SLAVE_ADDRESS_DHT20, (uint8_t*) init, 3, 0xFF);
-	HAL_Delay(10);
+	HAL_Delay(20);
 
 	init[0] = 0xBE;
 	init[1] = 0x08;
 	init[2] = 0x00;
 	HAL_I2C_Master_Transmit(&hi2c1, SLAVE_ADDRESS_DHT20, (uint8_t*) init, 3, 0xFF);
-	HAL_Delay(10);
+	HAL_Delay(20);
 }
 
 void dht20_reset(uint8_t regist){
@@ -65,14 +65,14 @@ void dht20_start(void){
 	}
 
 	uint8_t trigger[1] = {0xAC};
-	uint8_t data[2] = {0x33, 0x00};
+	uint8_t data[3] = {0xAC, 0x33, 0x00};
 
-	HAL_I2C_Master_Transmit(&hi2c1, SLAVE_ADDRESS_DHT20, (uint8_t*) trigger, 1, 0xFF);
+	//HAL_I2C_Master_Transmit(&hi2c1, SLAVE_ADDRESS_DHT20, (uint8_t*) trigger, 1, 0xFF);
+	HAL_I2C_Master_Transmit(&hi2c1, SLAVE_ADDRESS_DHT20, (uint8_t*) data, 3, 0xFF);
 	HAL_Delay(80);
-	HAL_I2C_Master_Transmit(&hi2c1, SLAVE_ADDRESS_DHT20, (uint8_t*) data, 2, 0xFF);
 }
 
-void dht20_read(uint8_t* value){
+void dht20_read(uint16_t* value){
 	dht20_start();
 	uint8_t data[7];
 	uint32_t Temper = 0, Humid = 0;
@@ -83,7 +83,7 @@ void dht20_read(uint8_t* value){
 	Humid = (Humid | data[2]) << 8;
 	Humid = Humid | data[3];
 	Humid = Humid >> 4;
-	Humid = (Humid * 100 * 10 / 1024 / 1024)/10;
+    Humid = (Humid * 100 * 10 / 1024 / 1024);
     value[0] = Humid;
 
 	//Temperature
@@ -91,7 +91,7 @@ void dht20_read(uint8_t* value){
     Temper = (Temper | data[4]) << 8;
     Temper = Temper | data[5];
     Temper = Temper & 0xfffff;
-    Temper = Temper*200/1024/1024 - 50;
+    Temper = Temper*200*10/1024/1024 - 500;
 	value[1] = Temper;
 
 }
