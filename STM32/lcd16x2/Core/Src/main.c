@@ -72,8 +72,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 		index_buffer++;
 		if (index_buffer == MAX_BUFFER_SIZE) index_buffer = 0;
 		buffer_flag = 1;
-//		HAL_UART_Receive_IT(&huart2, &buffer_byte, 1);
-//		HAL_UART_Receive(&huart2, &buffer_byte, Size, Timeout)
+		HAL_UART_Receive_IT(&huart2, &buffer_byte, 1);
 	}
 }
 /* USER CODE END 0 */

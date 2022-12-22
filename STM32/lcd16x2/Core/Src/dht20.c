@@ -12,7 +12,7 @@ extern UART_HandleTypeDef huart2;
 #define SLAVE_ADDRESS_DHT20 (0x38 << 1)
 
 uint16_t value_x10[2] = {0, 0};
-char temp[16], humid[16];
+char temp[20], humid[20];
 int status = INIT;
 
 void dht20_init(void){

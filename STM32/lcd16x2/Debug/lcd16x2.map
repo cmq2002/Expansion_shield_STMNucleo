@@ -3727,7 +3727,7 @@ LOAD f:/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.extern
  .igot.plt      0x0000000020000070        0x0 f:/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/crtbegin.o
                 0x0000000020000070                . = ALIGN (0x4)
 
-.bss            0x0000000020000070      0x1c8 load address 0x0000000008005194
+.bss            0x0000000020000070      0x1d0 load address 0x0000000008005194
                 0x0000000020000070                _sbss = .
                 0x0000000020000070                __bss_start__ = _sbss
  *(.bss)
@@ -3736,132 +3736,132 @@ LOAD f:/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.extern
  .bss.value_x10
                 0x000000002000008c        0x4 ./Core/Src/dht20.o
                 0x000000002000008c                value_x10
- .bss.temp      0x0000000020000090       0x10 ./Core/Src/dht20.o
+ .bss.temp      0x0000000020000090       0x14 ./Core/Src/dht20.o
                 0x0000000020000090                temp
- .bss.humid     0x00000000200000a0       0x10 ./Core/Src/dht20.o
-                0x00000000200000a0                humid
- .bss.status    0x00000000200000b0        0x4 ./Core/Src/dht20.o
-                0x00000000200000b0                status
- .bss.hi2c1     0x00000000200000b4       0x54 ./Core/Src/main.o
-                0x00000000200000b4                hi2c1
- .bss.htim2     0x0000000020000108       0x48 ./Core/Src/main.o
-                0x0000000020000108                htim2
- .bss.huart2    0x0000000020000150       0x44 ./Core/Src/main.o
-                0x0000000020000150                huart2
+ .bss.humid     0x00000000200000a4       0x14 ./Core/Src/dht20.o
+                0x00000000200000a4                humid
+ .bss.status    0x00000000200000b8        0x4 ./Core/Src/dht20.o
+                0x00000000200000b8                status
+ .bss.hi2c1     0x00000000200000bc       0x54 ./Core/Src/main.o
+                0x00000000200000bc                hi2c1
+ .bss.htim2     0x0000000020000110       0x48 ./Core/Src/main.o
+                0x0000000020000110                htim2
+ .bss.huart2    0x0000000020000158       0x44 ./Core/Src/main.o
+                0x0000000020000158                huart2
  .bss.timer1_counter
-                0x0000000020000194        0x4 ./Core/Src/software_timer.o
-                0x0000000020000194                timer1_counter
- .bss.timer1_flag
-                0x0000000020000198        0x4 ./Core/Src/software_timer.o
-                0x0000000020000198                timer1_flag
- .bss.timer2_counter
                 0x000000002000019c        0x4 ./Core/Src/software_timer.o
-                0x000000002000019c                timer2_counter
- .bss.timer2_flag
+                0x000000002000019c                timer1_counter
+ .bss.timer1_flag
                 0x00000000200001a0        0x4 ./Core/Src/software_timer.o
-                0x00000000200001a0                timer2_flag
- .bss.timer3_counter
+                0x00000000200001a0                timer1_flag
+ .bss.timer2_counter
                 0x00000000200001a4        0x4 ./Core/Src/software_timer.o
-                0x00000000200001a4                timer3_counter
- .bss.timer3_flag
+                0x00000000200001a4                timer2_counter
+ .bss.timer2_flag
                 0x00000000200001a8        0x4 ./Core/Src/software_timer.o
-                0x00000000200001a8                timer3_flag
- .bss.timer4_counter
+                0x00000000200001a8                timer2_flag
+ .bss.timer3_counter
                 0x00000000200001ac        0x4 ./Core/Src/software_timer.o
-                0x00000000200001ac                timer4_counter
- .bss.timer4_flag
+                0x00000000200001ac                timer3_counter
+ .bss.timer3_flag
                 0x00000000200001b0        0x4 ./Core/Src/software_timer.o
-                0x00000000200001b0                timer4_flag
- .bss.timer5_counter
+                0x00000000200001b0                timer3_flag
+ .bss.timer4_counter
                 0x00000000200001b4        0x4 ./Core/Src/software_timer.o
-                0x00000000200001b4                timer5_counter
- .bss.timer5_flag
+                0x00000000200001b4                timer4_counter
+ .bss.timer4_flag
                 0x00000000200001b8        0x4 ./Core/Src/software_timer.o
-                0x00000000200001b8                timer5_flag
- .bss.timer6_counter
+                0x00000000200001b8                timer4_flag
+ .bss.timer5_counter
                 0x00000000200001bc        0x4 ./Core/Src/software_timer.o
-                0x00000000200001bc                timer6_counter
- .bss.timer6_flag
+                0x00000000200001bc                timer5_counter
+ .bss.timer5_flag
                 0x00000000200001c0        0x4 ./Core/Src/software_timer.o
-                0x00000000200001c0                timer6_flag
- .bss.timer7_counter
+                0x00000000200001c0                timer5_flag
+ .bss.timer6_counter
                 0x00000000200001c4        0x4 ./Core/Src/software_timer.o
-                0x00000000200001c4                timer7_counter
- .bss.timer7_flag
+                0x00000000200001c4                timer6_counter
+ .bss.timer6_flag
                 0x00000000200001c8        0x4 ./Core/Src/software_timer.o
-                0x00000000200001c8                timer7_flag
- .bss.timer8_counter
+                0x00000000200001c8                timer6_flag
+ .bss.timer7_counter
                 0x00000000200001cc        0x4 ./Core/Src/software_timer.o
-                0x00000000200001cc                timer8_counter
- .bss.timer8_flag
+                0x00000000200001cc                timer7_counter
+ .bss.timer7_flag
                 0x00000000200001d0        0x4 ./Core/Src/software_timer.o
-                0x00000000200001d0                timer8_flag
- .bss.timer9_counter
+                0x00000000200001d0                timer7_flag
+ .bss.timer8_counter
                 0x00000000200001d4        0x4 ./Core/Src/software_timer.o
-                0x00000000200001d4                timer9_counter
- .bss.timer9_flag
+                0x00000000200001d4                timer8_counter
+ .bss.timer8_flag
                 0x00000000200001d8        0x4 ./Core/Src/software_timer.o
-                0x00000000200001d8                timer9_flag
- .bss.timer10_counter
+                0x00000000200001d8                timer8_flag
+ .bss.timer9_counter
                 0x00000000200001dc        0x4 ./Core/Src/software_timer.o
-                0x00000000200001dc                timer10_counter
- .bss.timer10_flag
+                0x00000000200001dc                timer9_counter
+ .bss.timer9_flag
                 0x00000000200001e0        0x4 ./Core/Src/software_timer.o
-                0x00000000200001e0                timer10_flag
+                0x00000000200001e0                timer9_flag
+ .bss.timer10_counter
+                0x00000000200001e4        0x4 ./Core/Src/software_timer.o
+                0x00000000200001e4                timer10_counter
+ .bss.timer10_flag
+                0x00000000200001e8        0x4 ./Core/Src/software_timer.o
+                0x00000000200001e8                timer10_flag
  .bss.__sbrk_heap_end
-                0x00000000200001e4        0x4 ./Core/Src/sysmem.o
+                0x00000000200001ec        0x4 ./Core/Src/sysmem.o
  .bss.buffer_byte
-                0x00000000200001e8        0x1 ./Core/Src/uart_reading.o
-                0x00000000200001e8                buffer_byte
- *fill*         0x00000000200001e9        0x3 
- .bss.buffer    0x00000000200001ec       0x1e ./Core/Src/uart_reading.o
-                0x00000000200001ec                buffer
- *fill*         0x000000002000020a        0x2 
+                0x00000000200001f0        0x1 ./Core/Src/uart_reading.o
+                0x00000000200001f0                buffer_byte
+ *fill*         0x00000000200001f1        0x3 
+ .bss.buffer    0x00000000200001f4       0x1e ./Core/Src/uart_reading.o
+                0x00000000200001f4                buffer
+ *fill*         0x0000000020000212        0x2 
  .bss.index_buffer
-                0x000000002000020c        0x4 ./Core/Src/uart_reading.o
-                0x000000002000020c                index_buffer
+                0x0000000020000214        0x4 ./Core/Src/uart_reading.o
+                0x0000000020000214                index_buffer
  .bss.buffer_flag
-                0x0000000020000210        0x4 ./Core/Src/uart_reading.o
-                0x0000000020000210                buffer_flag
- .bss.isRST     0x0000000020000214        0x4 ./Core/Src/uart_reading.o
-                0x0000000020000214                isRST
- .bss.isOK      0x0000000020000218        0x4 ./Core/Src/uart_reading.o
-                0x0000000020000218                isOK
+                0x0000000020000218        0x4 ./Core/Src/uart_reading.o
+                0x0000000020000218                buffer_flag
+ .bss.isRST     0x000000002000021c        0x4 ./Core/Src/uart_reading.o
+                0x000000002000021c                isRST
+ .bss.isOK      0x0000000020000220        0x4 ./Core/Src/uart_reading.o
+                0x0000000020000220                isOK
  .bss.cmdParserStatus
-                0x000000002000021c        0x4 ./Core/Src/uart_reading.o
-                0x000000002000021c                cmdParserStatus
+                0x0000000020000224        0x4 ./Core/Src/uart_reading.o
+                0x0000000020000224                cmdParserStatus
  .bss.cmd_index
-                0x0000000020000220        0x4 ./Core/Src/uart_reading.o
-                0x0000000020000220                cmd_index
- .bss.uwTick    0x0000000020000224        0x4 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
-                0x0000000020000224                uwTick
+                0x0000000020000228        0x4 ./Core/Src/uart_reading.o
+                0x0000000020000228                cmd_index
+ .bss.uwTick    0x000000002000022c        0x4 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
+                0x000000002000022c                uwTick
  .bss.__malloc_free_list
-                0x0000000020000228        0x4 f:/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-nano-mallocr.o)
-                0x0000000020000228                __malloc_free_list
+                0x0000000020000230        0x4 f:/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-nano-mallocr.o)
+                0x0000000020000230                __malloc_free_list
  .bss.__malloc_sbrk_start
-                0x000000002000022c        0x4 f:/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-nano-mallocr.o)
-                0x000000002000022c                __malloc_sbrk_start
- .bss.errno     0x0000000020000230        0x4 f:/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-reent.o)
-                0x0000000020000230                errno
+                0x0000000020000234        0x4 f:/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-nano-mallocr.o)
+                0x0000000020000234                __malloc_sbrk_start
+ .bss.errno     0x0000000020000238        0x4 f:/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-reent.o)
+                0x0000000020000238                errno
  .bss.__lock___malloc_recursive_mutex
-                0x0000000020000234        0x1 f:/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-lock.o)
-                0x0000000020000234                __lock___malloc_recursive_mutex
+                0x000000002000023c        0x1 f:/stm32cubeide_1.11.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.100.202210260954/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-lock.o)
+                0x000000002000023c                __lock___malloc_recursive_mutex
  *(COMMON)
-                0x0000000020000238                . = ALIGN (0x4)
- *fill*         0x0000000020000235        0x3 
-                0x0000000020000238                _ebss = .
-                0x0000000020000238                __bss_end__ = _ebss
+                0x0000000020000240                . = ALIGN (0x4)
+ *fill*         0x000000002000023d        0x3 
+                0x0000000020000240                _ebss = .
+                0x0000000020000240                __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x0000000020000238      0x600 load address 0x0000000008005194
-                0x0000000020000238                . = ALIGN (0x8)
+                0x0000000020000240      0x600 load address 0x0000000008005194
+                0x0000000020000240                . = ALIGN (0x8)
                 [!provide]                        PROVIDE (end = .)
-                0x0000000020000238                PROVIDE (_end = .)
-                0x0000000020000438                . = (. + _Min_Heap_Size)
- *fill*         0x0000000020000238      0x200 
-                0x0000000020000838                . = (. + _Min_Stack_Size)
- *fill*         0x0000000020000438      0x400 
-                0x0000000020000838                . = ALIGN (0x8)
+                0x0000000020000240                PROVIDE (_end = .)
+                0x0000000020000440                . = (. + _Min_Heap_Size)
+ *fill*         0x0000000020000240      0x200 
+                0x0000000020000840                . = (. + _Min_Stack_Size)
+ *fill*         0x0000000020000440      0x400 
+                0x0000000020000840                . = ALIGN (0x8)
 
 /DISCARD/
  libc.a(*)

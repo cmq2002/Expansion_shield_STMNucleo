@@ -17,7 +17,7 @@
 #define READ 1
 
 extern uint16_t value_x10[2];
-extern char temp[16],humid[16];
+extern char temp[20],humid[20];
 
 void dht20_init(void);
 
