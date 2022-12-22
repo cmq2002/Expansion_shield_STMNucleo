@@ -1,6 +1,4 @@
-/** 
 
-**/
 
 #include "i2c-lcd.h"
 extern I2C_HandleTypeDef hi2c1;  // change your handler here accordingly
@@ -73,4 +71,18 @@ void lcd_goto_XY (int row, int col)
 		pos_Addr = 0x80 | (0x40 + col);
 	}
 	lcd_send_cmd(pos_Addr);
+}
+
+void lcd_show_info(void){
+	  lcd_init();
+	  lcd_send_string("Humid:");
+	  lcd_goto_XY(2, 0);
+	  lcd_send_string("Temp:");
+}
+
+void lcd_show_value(void){
+	  lcd_goto_XY(1, 6);
+	  lcd_send_string(humid);
+	  lcd_goto_XY(2, 6);
+	  lcd_send_string(temp);
 }
