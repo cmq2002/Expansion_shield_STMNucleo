@@ -4,5 +4,5 @@
 ../Core/Src/i2c-lcd.c:52:6:lcd_send_string	16	static
 ../Core/Src/i2c-lcd.c:57:6:lcd_clear_display	8	static
 ../Core/Src/i2c-lcd.c:62:6:lcd_goto_XY	24	static
-../Core/Src/i2c-lcd.c:76:6:lcd_show_info	8	static
-../Core/Src/i2c-lcd.c:83:6:lcd_show_value	8	static
+../Core/Src/i2c-lcd.c:76:6:lcd_greeting	8	static
+../Core/Src/i2c-lcd.c:85:6:lcd_show_value	8	static

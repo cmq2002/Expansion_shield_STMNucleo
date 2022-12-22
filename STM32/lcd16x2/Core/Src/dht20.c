@@ -4,13 +4,16 @@
  *  Created on: Dec 21, 2022
  *      Author: LeHungVjpPro
  */
-#include "main.h"
 #include "dht20.h"
 
 extern I2C_HandleTypeDef hi2c1;
 extern UART_HandleTypeDef huart2;
 
 #define SLAVE_ADDRESS_DHT20 (0x38 << 1)
+
+uint16_t value_x10[2] = {0, 0};
+char temp[16], humid[16];
+int status = INIT;
 
 void dht20_init(void){
 	//Set register when call a wrong reset
@@ -93,4 +96,30 @@ void dht20_read(uint16_t* value){
     Temper = Temper*200*10/1024/1024 - 500;
 	value[1] = Temper;
 
+}
+
+void init_reading(void){
+	dht20_init();
+	dht20_read(value_x10);
+}
+
+void fsm_run(void){
+	switch(status){
+		case INIT:
+			setTimer1(1);
+			status = READ;
+			break;
+		case READ:
+			if (timer1_flag == 1){
+				dht20_read(value_x10);
+				//11011111 is degree character (manual)
+				sprintf(temp, "Temp:  %d.%d %cC",value_x10[1]/10,value_x10[1]%10 ,0b11011111);
+				sprintf(humid,"Humid: %01d.%d %%",value_x10[0]/10,value_x10[0]%10);
+				setTimer1(300);
+			}
+			break;
+		default:
+			break;
+	}
+	lcd_show_value();
 }

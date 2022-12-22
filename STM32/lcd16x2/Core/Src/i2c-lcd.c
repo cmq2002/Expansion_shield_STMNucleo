@@ -62,9 +62,9 @@ void lcd_clear_display (void)
 void lcd_goto_XY (int row, int col)
 {
 	uint8_t pos_Addr;
-	if(row == 1) 
+	if(row == 0)
 	{
-		pos_Addr = 0x80 + row - 1 + col;
+		pos_Addr = 0x80 + row  + col;
 	}
 	else
 	{
@@ -73,16 +73,18 @@ void lcd_goto_XY (int row, int col)
 	lcd_send_cmd(pos_Addr);
 }
 
-void lcd_show_info(void){
+void lcd_greeting (void){
+	  lcd_clear_display();
 	  lcd_init();
-	  lcd_send_string("Humid:");
-	  lcd_goto_XY(2, 0);
-	  lcd_send_string("Temp:");
+	  lcd_goto_XY(0, 0);
+	  lcd_send_string("HCMUT Dev Team");
+	  lcd_goto_XY(1, 0);
+	  lcd_send_string("Waiting...");
 }
 
 void lcd_show_value(void){
-	  lcd_goto_XY(1, 6);
+	  lcd_goto_XY(0, 0);
 	  lcd_send_string(humid);
-	  lcd_goto_XY(2, 6);
+	  lcd_goto_XY(1, 0);
 	  lcd_send_string(temp);
 }

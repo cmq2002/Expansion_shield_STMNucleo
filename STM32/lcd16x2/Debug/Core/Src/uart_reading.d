@@ -1,5 +1,5 @@
-Core/Src/fsm_automatic.o: ../Core/Src/fsm_automatic.c \
- ../Core/Inc/fsm_automatic.h ../Core/Inc/i2c-lcd.h \
+Core/Src/uart_reading.o: ../Core/Src/uart_reading.c \
+ ../Core/Inc/uart_reading.h ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
@@ -26,10 +26,9 @@ Core/Src/fsm_automatic.o: ../Core/Src/fsm_automatic.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
- ../Core/Inc/fsm_automatic.h ../Core/Inc/dht20.h \
- ../Core/Inc/software_timer.h
-../Core/Inc/fsm_automatic.h:
-../Core/Inc/i2c-lcd.h:
+ ../Core/Inc/dht20.h ../Core/Inc/i2c-lcd.h ../Core/Inc/software_timer.h
+../Core/Inc/uart_reading.h:
+../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h:
@@ -56,6 +55,6 @@ Core/Src/fsm_automatic.o: ../Core/Src/fsm_automatic.c \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
-../Core/Inc/fsm_automatic.h:
 ../Core/Inc/dht20.h:
+../Core/Inc/i2c-lcd.h:
 ../Core/Inc/software_timer.h:

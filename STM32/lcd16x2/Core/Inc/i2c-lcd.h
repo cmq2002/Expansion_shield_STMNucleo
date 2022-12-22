@@ -3,7 +3,7 @@
 #define INC_LCD_H_
 
 #include "stm32f1xx_hal.h"
-#include "fsm_automatic.h"
+#include "dht20.h"
 
 void lcd_init (void);   // initialize lcd
 
@@ -17,7 +17,7 @@ void lcd_clear_display (void);	//clear display lcd
 
 void lcd_goto_XY (int row, int col); //set proper location on screen
 
-void lcd_show_info (void);
+void lcd_greeting (void);
 
 void lcd_show_value(void);
 #endif /* INC_DHT20_H_ */
