@@ -64,7 +64,6 @@ void dht20_start(void){
 		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, SET);
 	}
 
-	uint8_t trigger[1] = {0xAC};
 	uint8_t data[3] = {0xAC, 0x33, 0x00};
 
 	//HAL_I2C_Master_Transmit(&hi2c1, SLAVE_ADDRESS_DHT20, (uint8_t*) trigger, 1, 0xFF);
