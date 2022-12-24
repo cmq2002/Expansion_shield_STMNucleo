@@ -19,23 +19,27 @@
 
 #define IDLE 0
 #define CMD_WAITING 1
-#define CMD_WAITING_O 2
-#define CMD_WAITING_OK 3
-#define CMD_WAITING_R 4
-#define CMD_WAITING_RS 5
-#define CMD_WAITING_RST 6
+#define CMD_READ_R 2
+#define CMD_READ_C 3
+//#define CMD_WAITING_O 2
+//#define CMD_WAITING_OK 3
+//#define CMD_WAITING_R 4
+//#define CMD_WAITING_RS 5
+//#define CMD_WAITING_RST 6
 
+#define isRST 7
+#define isCAP 8
+#define AUTO 9
 
 extern uint8_t buffer_byte;
 extern uint8_t buffer[MAX_BUFFER_SIZE];
 extern int index_buffer;
 extern int buffer_flag;
-extern int isRST;
-extern int isOK;
+
 
 void cmd_parser_fsm();
 
-void uart_comms_fsm();
+void uart_control_fsm();
 
 void Scan_Addr();
 

@@ -29,6 +29,6 @@ void dht20_start(void);
 
 void init_reading(void);
 
-void fsm_run(void);
+void reading_fsm_run(void);
 
 #endif /* INC_DHT20_H_ */

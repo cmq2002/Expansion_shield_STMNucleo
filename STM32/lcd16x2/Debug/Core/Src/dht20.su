@@ -3,4 +3,4 @@
 ../Core/Src/dht20.c:54:6:dht20_start	24	static
 ../Core/Src/dht20.c:77:6:dht20_read	40	static
 ../Core/Src/dht20.c:101:6:init_reading	8	static
-../Core/Src/dht20.c:106:6:fsm_run	16	static
+../Core/Src/dht20.c:106:6:reading_fsm_run	16	static

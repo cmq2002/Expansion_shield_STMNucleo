@@ -103,7 +103,7 @@ void init_reading(void){
 	dht20_read(value_x10);
 }
 
-void fsm_run(void){
+void reading_fsm_run(void){
 	switch(status){
 		case INIT:
 			setTimer1(1);
@@ -114,7 +114,7 @@ void fsm_run(void){
 				dht20_read(value_x10);
 				//11011111 is degree character (manual)
 				sprintf(temp, "Temp:  %d.%d %cC",value_x10[1]/10,value_x10[1]%10 ,0b11011111);
-				sprintf(humid,"Humid: %01d.%d %%",value_x10[0]/10,value_x10[0]%10);
+				sprintf(humid,"Humid: %01d.%d %%   ",value_x10[0]/10,value_x10[0]%10);
 				setTimer1(300);
 			}
 			break;

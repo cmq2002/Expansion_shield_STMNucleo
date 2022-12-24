@@ -67,7 +67,7 @@ static void MX_TIM2_Init(void);
 /* USER CODE BEGIN 0 */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 	if (huart->Instance == USART2){
-//		HAL_UART_Transmit(&huart2, &buffer_byte, 1, 500);
+		HAL_UART_Transmit(&huart2, &buffer_byte, 1, 500);
 		buffer[index_buffer] = buffer_byte;
 		index_buffer++;
 		if (index_buffer == MAX_BUFFER_SIZE) index_buffer = 0;
@@ -118,13 +118,22 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   lcd_greeting();
   init_reading();
+  setTimer3(300);
   while (1)
   {
 	  if (buffer_flag == 1){
 		  cmd_parser_fsm();
 		  buffer_flag = 0;
 	  }
-	  uart_comms_fsm();
+	  if(timer3_flag == 1){
+		  setTimer3(1);
+		  uart_control_fsm();
+	  }
+
+
+	  //Testing hardware
+//	  HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+//	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -224,9 +233,9 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 7999;
+  htim2.Init.Prescaler = 7199;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 9;
+  htim2.Init.Period = 99;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)

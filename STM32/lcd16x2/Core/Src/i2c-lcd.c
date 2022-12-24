@@ -77,7 +77,7 @@ void lcd_greeting (void){
 	  lcd_clear_display();
 	  lcd_init();
 	  lcd_goto_XY(0, 0);
-	  lcd_send_string("HCMUT Dev Team");
+	  lcd_send_string("System Boot Done");
 	  lcd_goto_XY(1, 0);
 	  lcd_send_string("Waiting...");
 }
