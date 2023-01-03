@@ -15,27 +15,28 @@
 #include "i2c-lcd.h"
 #include "software_timer.h"
 
-#define MAX_BUFFER_SIZE 30
+#define INIT_UART 0
 
-#define IDLE 0
-#define CMD_WAITING 1
-#define CMD_READ_R 2
-#define CMD_READ_C 3
-//#define CMD_WAITING_O 2
-//#define CMD_WAITING_OK 3
-//#define CMD_WAITING_R 4
-//#define CMD_WAITING_RS 5
-//#define CMD_WAITING_RST 6
+#define READING 1
+
+#define STOP 2
 
 #define isRST 7
+
 #define isCAP 8
+
 #define AUTO 9
+
+#define WAIT 10
+
+#define MAX_BUFFER_SIZE 50
+
+#define MAX_CMD_SIZE 3
 
 extern uint8_t buffer_byte;
 extern uint8_t buffer[MAX_BUFFER_SIZE];
-extern int index_buffer;
-extern int buffer_flag;
-
+extern uint8_t index_buffer;
+extern uint8_t buffer_flag;
 
 void cmd_parser_fsm();
 

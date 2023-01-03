@@ -15,163 +15,71 @@
 #include "uart_reading.h"
 
 extern UART_HandleTypeDef huart2;
+
 extern I2C_HandleTypeDef hi2c1;
 
 //Globally use in main to take input
 uint8_t buffer_byte;
 uint8_t buffer[MAX_BUFFER_SIZE];
-int index_buffer = 0;
-int buffer_flag = 0;
+uint8_t index_buffer = 0;
+uint8_t buffer_flag = 0;
 
 //Locally use in uart_reading
-int cmdParserStatus = IDLE;
-int cmd_index = 0;
-int cmd_flag = IDLE;
+uint8_t cmdParserStatus = INIT_UART;
+uint8_t cmd_data[MAX_CMD_SIZE];
+uint8_t cmd_index = 0;
+uint8_t cmd_flag = INIT_UART;
 
-void cmd_parser_fsm()
-{
-	switch (cmdParserStatus)
-	{
-	case IDLE:
-		if (buffer[cmd_index] == '!')
-		{
-			cmdParserStatus = CMD_WAITING;
-		}
-		cmd_index++;
-		if (buffer_flag == 0)
-		{
-			index_buffer = 0;
-			cmd_index = 0;
-		}
-		break;
-	case CMD_WAITING:
-		if (buffer[cmd_index] == 'R')
-		{
-			cmdParserStatus = CMD_READ_R;
-		}
-		else if (buffer[cmd_index] == 'C')
-		{
-			cmdParserStatus = CMD_READ_C;
-		}
-		else cmdParserStatus = IDLE;
-		cmd_index++;
-		if (buffer_flag == 0)
-		{
-			index_buffer = 0;
-			cmd_index = 0;
-		}
-		break;
-	case CMD_READ_R:
-		if (buffer[cmd_index] == '#')
-		{
-			cmd_flag = isRST;
-			cmdParserStatus = IDLE;
-			setTimer2(1);
-		}
-		else cmdParserStatus = IDLE;
-		cmd_index++;
-		if (buffer_flag == 0)
-		{
-			index_buffer = 0;
-			cmd_index = 0;
-		}
-		break;
-	case CMD_READ_C:
-		if (buffer[cmd_index] == '#')
-		{
-			cmd_flag = isCAP;
-			cmdParserStatus = IDLE;
-		}
-		else cmdParserStatus = IDLE;
-		cmd_index++;
-		if (buffer_flag == 0)
-		{
-			index_buffer = 0;
-			cmd_index = 0;
-		}
-		break;
-//-----------------------------------------------------
-//	case CMD_WAITING_O:
-//		if (buffer[cmd_index] == 'K')
-//		{
-//			cmdParserStatus = CMD_WAITING_OK;
-//		}
-//		else cmdParserStatus = IDLE;
-//		cmd_index++;
-//		if (buffer_flag == 0)
-//		{
-//			index_buffer = 0;
-//			cmd_index = 0;
-//		}
-//		break;
-//	case CMD_WAITING_OK:
-//		if (buffer[cmd_index] == '#')
-//		{
-//			cmd_flag = isCAP;
-//			cmdParserStatus = IDLE;
-//		}
-//		else cmdParserStatus = IDLE;
-//		cmd_index++;
-//		if (buffer_flag == 0)
-//		{
-//			index_buffer = 0;
-//			cmd_index = 0;
-//		}
-//		break;
-////-----------------------------------------------------
-//	case CMD_WAITING_R:
-//		if (buffer[cmd_index] == 'S')
-//		{
-//			cmdParserStatus = CMD_WAITING_RS;
-//		}
-//		else cmdParserStatus = IDLE;
-//		cmd_index++;
-//		if (buffer_flag == 0)
-//		{
-//			index_buffer = 0;
-//			cmd_index = 0;
-//		}
-//		break;
-//	case CMD_WAITING_RS:
-//		if (buffer[cmd_index] == 'T')
-//		{
-//			cmdParserStatus = CMD_WAITING_RST;
-//		}
-//		else cmdParserStatus = IDLE;
-//		cmd_index++;
-//		if (buffer_flag == 0)
-//		{
-//			index_buffer = 0;
-//			cmd_index = 0;
-//		}
-//		break;
-//	case CMD_WAITING_RST:
-//		if (buffer[cmd_index] == '#')
-//		{
-//			cmd_flag = isRST;
-//			setTimer2(100);
-//			cmdParserStatus = IDLE;
-//		}
-//		else cmdParserStatus = IDLE;
-//		cmd_index++;
-//		if (buffer_flag == 0)
-//		{
-//			index_buffer = 0;
-//			cmd_index = 0;
-//		}
-//		break;
-//-----------------------------------------------------
-	default:
-		break;
+int isCmdEqualToRST(uint8_t str[]){
+	int flag = 0;
+	if (str[0] == 'R') flag = 1;
+	else flag = 0;
+	return flag;
+}
+
+int isCmdEqualToCAP(uint8_t str[]){
+	int flag = 0;
+	if (str[0] == 'C') flag = 1;
+	else flag = 0;
+	return flag;
+}
+
+void cmd_parser_fsm(){
+	switch(cmdParserStatus){
+		case INIT_UART:
+			if (buffer_byte == '!') cmdParserStatus = READING;
+			break;
+		case READING:
+			if (buffer_byte != '!' && buffer_byte != '#'){
+				cmd_data[cmd_index] = buffer_byte;
+				cmd_index++;
+			}
+			else if (buffer_byte == '!'){
+				cmdParserStatus = READING;
+			}
+			else if (buffer_byte == '#'){
+				cmdParserStatus = STOP;
+				cmd_index = 0;
+			}
+			break;
+		case STOP:
+			if (isCmdEqualToRST(cmd_data)==1) cmd_flag = isRST;
+			else if (isCmdEqualToCAP(cmd_data)==1) cmd_flag = isCAP;
+			else return;
+			cmdParserStatus = INIT_UART;
+			break;
+		default:
+			break;
 	}
 }
 
 void uart_control_fsm()
 {
 	switch (cmd_flag){
-		case IDLE:
+		case INIT_UART:
 			cmd_flag = AUTO;
 			setTimer2(1);
+			break;
 		case AUTO:
 			if (timer2_flag == 1){
 				HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
@@ -180,10 +88,16 @@ void uart_control_fsm()
 			reading_fsm_run();
 			break;
 		case isCAP:
-			//Stop fsm_run() by doing nothing
+			HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, RESET);
+			setTimer4(1000);
+			cmd_flag = WAIT;
+			break;
+		case WAIT:
+			HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, RESET);
+			if (timer4_flag == 1) cmd_flag = INIT_UART;
 			break;
 		case isRST:
-			cmd_flag = AUTO;
+			cmd_flag = INIT_UART;
 			break;
 		default:
 			break;
