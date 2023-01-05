@@ -2,4 +2,4 @@
 ../Core/Src/uart_reading.c:40:5:isCmdEqualToCAP	24	static
 ../Core/Src/uart_reading.c:47:6:cmd_parser_fsm	8	static
 ../Core/Src/uart_reading.c:76:6:uart_control_fsm	8	static
-../Core/Src/uart_reading.c:107:6:Scan_Addr	112	static
+../Core/Src/uart_reading.c:108:6:Scan_Addr	112	static

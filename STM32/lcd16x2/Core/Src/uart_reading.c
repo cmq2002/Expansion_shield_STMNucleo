@@ -82,10 +82,11 @@ void uart_control_fsm()
 			break;
 		case AUTO:
 			if (timer2_flag == 1){
-				HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, RESET);
 				setTimer2(300);
 			}
 			reading_fsm_run();
+			HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, SET);
 			break;
 		case isCAP:
 			HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, RESET);
