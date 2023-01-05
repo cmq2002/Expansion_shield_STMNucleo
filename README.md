@@ -4,9 +4,9 @@
 - Major components: DHT-20 sensor and LCD 16x2
 - Purpose: Measuring temperature and humidity then print out the information using the LCD.
 - Project layout:
-  - The Altiutm Designer folder includes Schematic and PCB layout of the Expansion Shield for STM Nucleo.
-  - The STM32 folder consists of the program to control this shield.
-  - The Proteus foler contains the simulation of the shield.
+  - The Altium_Designer folder includes Schematic and PCB layout of the Expansion Shield for STM Nucleo.
+  - The STM32 folder consists of the program for the shield's operation.
+  - The Manual_and_Libs folder holds all manual, datasheet for devices and components
 
 ## Geneal Idea:
 - 2 chân SCL(serial clock)/SDA (serial data) giao tiếp I2C dùng 2 pins PB8-PB9 (D14/D15)
