@@ -7,7 +7,7 @@ extern I2C_HandleTypeDef hi2c1;  // change your handler here accordingly
 
 void lcd_send_cmd (char cmd)
 {
-  char data_u, data_l;
+	char data_u, data_l;
 	uint8_t data_t[4];
 	data_u = (cmd&0xf0);
 	data_l = ((cmd<<4)&0xf0);
@@ -33,10 +33,10 @@ void lcd_send_data (char data)
 
 void lcd_init (void)
 {
-	lcd_send_cmd (0x33); /* set 4-bits interface */
+	lcd_send_cmd (0x33);
 	lcd_send_cmd (0x32);
 	HAL_Delay(50);
-	lcd_send_cmd (0x28); /* start to set LCD function */
+	lcd_send_cmd (0x28); /* start to set LCD function (4-bit mode) */
 	HAL_Delay(50);
 	lcd_send_cmd (0x01); /* clear display */
 	HAL_Delay(50);
@@ -64,11 +64,11 @@ void lcd_goto_XY (int row, int col)
 	uint8_t pos_Addr;
 	if(row == 0)
 	{
-		pos_Addr = 0x80 + row  + col;
+		pos_Addr = 0x80 + col;
 	}
 	else
 	{
-		pos_Addr = 0x80 | (0x40 + col);
+		pos_Addr = 0xC0 + col;
 	}
 	lcd_send_cmd(pos_Addr);
 }

@@ -1,58 +1,15 @@
 # Expansion shield for STM Nucleo
 
 ## General Information:
-- Major components: DHT-20 sensor and LCD 16x2
-- Purpose: Measuring temperature and humidity then print out the information using the LCD.
-- Project layout:
-  - The Altiutm Designer folder includes Schematic and PCB layout of the Expansion Shield for STM Nucleo.
-  - The STM32 folder consists of the program to control this shield.
-  - The Proteus foler contains the simulation of the shield.
+- Development Board: STM32 Nucleo-64 with STM32F103RBT6 MCU.
+- Major components: DHT-20 sensor and LCD 16x2.
+- Purpose: Measuring temperature and humidity then display the information using the LCD.
 
-## Geneal Idea:
-- 2 chân SCL(serial clock)/SDA (serial data) giao tiếp I2C dùng 2 pins PB8-PB9 (D14/D15)
-- chân LED: PA1 (A1)
-- Chỉ sài hàng ray của adruino (Giống shield của thầy).
-- chân SCL/SDA treo trên VCC (pull-up), cấu hình GPIO dạng (input/output)? Open-drain *(Không phải analog).
-- First, MCU send data to DHT20(truy vấn cảm biến), Then it responds data to MCU
-- LCD I2C PCF8574
-- STM32
-  - looking for HAL_I2C_Master_Transmit()
+## Project layout:
+- The Altium_Designer folder includes Schematic and PCB layout of the Expansion Shield for STM Nucleo.
+- The STM32 folder consists of the program for the shield's operation.
+- The Documents folder holds all manual, datasheet for devices and components.
 
-  - Address 
-  	- DHT20	:	0x38
-	-  LCD	:	0x27 (A0,A1,A2 no res = 1) =>	Max 8 devices LCDs (0x20->0x27)
-  - Clockspeed
-	-  CLK 	:	100000 (100kHz)	
-
-  - LCD
-	- Implement function:
-	- Ex:
-	- LCD_Init(): bla bla, move cursor to home and set data address 0
-	- LCD_Send_Data():include send the header. 4 parts in the data send x+y+z+t
-	- LCD_Send_Cmd():	work same with send data()
-	- LCD_Goto_XY (int row, int col): move the cursor to xy
-		    
-## About the STM32 Project:
-- Configuring the .ioc:
-  - GPIO: For the Led 
-  - I2C1: For communication with the PCF8574 extension || By default: SCL -> PB8, SDA -> PB9
-  - RCC: Generate external crystal clock
-  - SYS: For STLink V2 Debuger
-  - TIM2 - NVIC: Invoke timer interrupt
-- The project using external crystal to generate 72Mhz clock
-- To invoke the timer interrupt every 10ms, setting must be as follow:
-  - Prescaler = 7999
-  - Counter = 99
-
-## Reference:
-- https://tapit.vn/giao-tiep-stm32f103c8t6-voi-lcd-16x2-thong-qua-module-i2c/
-- https://www.bluedot.space/tutorials/how-many-devices-can-you-connect-on-i2c-bus/
-- https://drive.google.com/file/d/1EUze00NjyJdFRy9nF8QQxjB7dwrBWjGl/view (For microbit IoTs)
-- https://khuenguyencreator.com/lap-trinh-stm32-voi-dht11-theo-chuan-1-wire/
-- https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf
-- https://controllerstech.com/i2c-lcd-in-stm32/
-- https://controllerstech.blogspot.com/2017/07/i2c-in-stm32.html
-- http://www.firmcodes.com/microcontrollers/8051-3/interfacing-lcd-with-8051/lcd-commands-and-understanding-of-lcd/ (Meaning of LCD commands)
-- https://forum.digikey.com/t/using-the-stm32cube-hal-i2c-driver-in-master-mode/15122 (HAL I2C Driver)
-- https://www.circuitbasics.com/basics-of-the-i2c-communication-protocol/
-- https://www.watelectronics.com/i2c-protocol/
+## System's Behavior:
+- Initially, the shield will print out greeting message. After that, it immediately take the measurements every 3 seconds.
+- UART communication is used to control the operation. The command !C# will stop the measurement instantly for observing and whenever, the command !R# is received the system will run normally again.
