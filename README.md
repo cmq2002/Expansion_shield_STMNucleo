@@ -1,15 +1,15 @@
-# Expansion shield for STM Nucleo
+# Expansion shield for STM Nucleo Development Board - HCMUT Logic Design Project
 
 ## General Information:
 - Development Board: STM32 Nucleo-64 with STM32F103RBT6 MCU.
 - Major components: DHT-20 sensor and LCD 16x2.
 - Purpose: Measuring temperature and humidity then display the information using the LCD.
 
-## Project layout:
+## About the Project layout:
 - The Altium_Designer folder includes Schematic and PCB layout of the Expansion Shield for STM Nucleo.
 - The STM32 folder consists of the program for the shield's operation.
 - The Documents folder holds all manual, datasheet for devices and components.
 
-## System's Behavior:
+## About the System's Behavior:
 - Initially, the shield will print out greeting message. After that, it immediately take the measurements every 3 seconds.
 - UART communication is used to control the operation. The command !C# will stop the measurement instantly for observing and whenever, the command !R# is received the system will run normally again.
