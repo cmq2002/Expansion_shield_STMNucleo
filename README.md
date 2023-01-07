@@ -13,3 +13,4 @@
 ## About the System's Behavior:
 - Initially, the shield will print out greeting message. After that, it immediately take the measurements every 3 seconds.
 - UART communication is used to control the operation. The command !C# will stop the measurement instantly for observing and whenever, the command !R# is received the system will run normally again.
+- The state when receiving !C# command is maintained in 10 seconds, after than the system will be automatically back to measurement. However, in within 10 seconds, if users enter !R# system will instatnly changing to automatic state without waiting for time out.  
